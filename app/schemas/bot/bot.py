@@ -27,7 +27,7 @@ def create_user_resolver(message):
         InlineKeyboardButton("Репозиторий разработки", url="https://git.pepemoss.com/universitat/ml/sam_train_backend"),
         InlineKeyboardButton("Репозиторий моделей", url="https://git.pepemoss.com/universitat/ml/sam_train"),
         InlineKeyboardButton("Open Api", url="https://pepemoss.com/sam_lora_backend/docs"),
-        InlineKeyboardButton("Graphiql", url="https://pepemoss.com/sam_lora_backend/graphql")
+        InlineKeyboardButton("Graphiql", url="https://pepemoss.com/sam_lora_backend/graphql"),
     )
 
     tbot.send_message(message.chat.id, text=documentation, reply_markup=markup, parse_mode='Markdown')
@@ -37,7 +37,9 @@ def create_user_resolver(message):
 def predict_mask_resolver(message):
     """Позволяет предсказать маску"""
 
-    send = tbot.send_message(message.chat.id, f'Отправьте фотокарточку как документ, размер до 20 МБ', parse_mode='Markdown')
+    send = tbot.send_message(
+        message.chat.id, f'Отправьте фотокарточку как документ, размер до 20 МБ', parse_mode='Markdown'
+    )
     tbot.register_next_step_handler(send, handler_set_path)
 
 
@@ -57,7 +59,9 @@ def handler_set_path(call) -> None:
 
     model_service = ModelService()
 
-    filename, filepath = model_service.mask_prediction(UploadFile(BytesIO(downloaded_file), size=len(downloaded_file), filename='aboba.png'))
+    filename, filepath = model_service.mask_prediction(
+        UploadFile(BytesIO(downloaded_file), size=len(downloaded_file), filename='aboba.png')
+    )
 
     image = Image.open(filepath)
 
