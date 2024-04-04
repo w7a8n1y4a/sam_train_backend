@@ -18,7 +18,6 @@ class Settings(BaseSettings):
     backend_domain: str
 
     telegram_token: str
-    webhook_domain: str
     model_id: str
 
     bucket_access_token: str

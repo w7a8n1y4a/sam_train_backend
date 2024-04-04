@@ -8,11 +8,12 @@ from strawberry import Schema
 from strawberry.fastapi import GraphQLRouter
 
 from app import settings
-from app.configs.bot import tbot
 from app.routers.v1.endpoints import api_router
 from app.configs.gql import get_graphql_context
 from app.schemas.gql.mutation import Mutation, Query
 from app.schemas.pydantic.shared import Root
+
+from app.schemas.bot.bot import *
 
 app = FastAPI(
     title=settings.project_name,

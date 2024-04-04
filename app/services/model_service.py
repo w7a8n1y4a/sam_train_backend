@@ -86,7 +86,7 @@ class ModelService:
 
         return file_url
 
-    def save_file_to_path(self, file: UploadFile) -> (str,):
+    def save_file_to_path(self, file: Union[UploadFile, Upload]) -> (str,):
         """Сохраняет файл, в tmp и отдаёт его имя, расширение и абсолютный путь"""
 
         # генерирует имя и путь до файла
