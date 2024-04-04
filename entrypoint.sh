@@ -2,10 +2,6 @@
 
 python load_mlflow_model.py
 
-cd model
-wget https://dl.fbaipublicfiles.com/segment_anything/sam_vit_b_01ec64.pth
-cd ..
-
 gunicorn app.main:app \
     --bind 0.0.0.0:5000 \
     --log-level 'warning' \

@@ -33,4 +33,4 @@ deploy:image:dev:
   script:
     - docker stop $PROJ || echo $?
     - docker rm $PROJ || echo $?
-    - docker run -d --name=$PROJ -p 8555:5000 --restart=always --env-file $ENV_FILE $DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG
+    - docker run -d --name=$PROJ -v /home/w7a8n1y4a/Documents/default_models/sam/sam_vit_b_01ec64.pth:/app/model/sam_vit_b_01ec64.pth -p 8555:5000 --restart=always --env-file $ENV_FILE $DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG
