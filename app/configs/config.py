@@ -15,8 +15,6 @@ class Settings(BaseSettings):
     version: str
     description: str
 
-    backend_domain: str
-
     telegram_token: str
     model_id: str
 

@@ -34,6 +34,7 @@ minio = "^7.2.5"
 pytelegrambotapi = "^4.16.1"
 uuid = "^1.30"
 filetype = "^1.2.0"
+gunicorn = "^21.2.0"
 
 [build-system]
 requires = ["poetry-core"]
