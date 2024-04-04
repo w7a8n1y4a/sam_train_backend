@@ -66,3 +66,5 @@ def handler_set_path(call) -> None:
     image.save(filepath)
 
     tbot.send_photo(call.chat.id, open(filepath, 'rb'))
+
+    os.remove(filepath)

@@ -82,6 +82,8 @@ class ModelService:
 
         minio_client.fput_object(bucket_name, filename, filepath)
 
+        os.remove(filepath)
+
         file_url = minio_client.presigned_get_object(bucket_name, filename)
 
         return file_url
