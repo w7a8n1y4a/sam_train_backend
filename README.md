@@ -1,4 +1,6 @@
-# [Dev SAM Train Backend](https://t.me/PepeMossRobot)
+# Телеграм бот с интеграцией [PepeMossRobot](https://t.me/PepeMossRobot)
+
+## Репозиторий [обучения моделей](https://git.pepemoss.com/universitat/ml/sam_train.git)
 
 ## Манифест
 
