@@ -21,9 +21,6 @@ def create_user_resolver(message):
         '\n'
         '*Управление*\n'
         '/start - запуск бота\n'
-        '\n'
-        '*Информация*\n'
-        f'Название модели в MLFlow: {settings.model_id}'
     )
 
     model_items_list = settings.model_id.split('/')
