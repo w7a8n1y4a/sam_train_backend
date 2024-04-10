@@ -26,12 +26,18 @@ def create_user_resolver(message):
         f'Название модели в MLFlow: {settings.model_id}'
     )
 
+    model_items_list = settings.model_id.split('/')
+
     markup = InlineKeyboardMarkup(row_width=2)
     markup.add(
         InlineKeyboardButton("Репозиторий разработки", url="https://git.pepemoss.com/universitat/ml/sam_train_backend"),
         InlineKeyboardButton("Репозиторий моделей", url="https://git.pepemoss.com/universitat/ml/sam_train"),
         InlineKeyboardButton("Open Api", url="https://pepemoss.com/sam_lora_backend/docs"),
         InlineKeyboardButton("Graphiql", url="https://pepemoss.com/sam_lora_backend/graphql"),
+        InlineKeyboardButton(
+            "MLflow run",
+            url=f'https://mlflow-test.pepemoss.com/#/experiments/{model_items_list[1]}/runs/{model_items_list[2]}',
+        ),
     )
 
     tbot.send_message(message.chat.id, text=documentation, reply_markup=markup, parse_mode='Markdown')
