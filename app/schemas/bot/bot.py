@@ -6,6 +6,7 @@ from PIL import Image
 from fastapi import UploadFile
 from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
 
+from app import settings
 from app.configs.bot import tbot
 from app.schemas.bot.enum import CommandNames
 from app.services.model_service import ModelService
@@ -20,6 +21,9 @@ def create_user_resolver(message):
         '\n'
         '*Управление*\n'
         '/start - запуск бота\n'
+        '\n'
+        '*Информация*\n'
+        f'Название модели в MLFlow: {settings.model_id}'
     )
 
     markup = InlineKeyboardMarkup(row_width=2)
