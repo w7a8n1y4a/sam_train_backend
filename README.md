@@ -31,3 +31,5 @@ mutation($file: Upload!){
 - Контейнер сделан на для запуска на `gpu`
 - Скачать базовую модель `wget https://dl.fbaipublicfiles.com/segment_anything/sam_vit_b_01ec64.pth`
 - Модели генерируются [sam_train](https://git.pepemoss.com/universitat/ml/sam_train)
+
+## Alina
