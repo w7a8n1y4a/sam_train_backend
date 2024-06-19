@@ -56,6 +56,7 @@ class StarletteUploadFile:
 
 def handler_set_path(call) -> None:
 
+    print("Вы отправили картинку на распознавание через телеграм бота")
     if call.content_type == 'photo':
         downloaded_file = tbot.download_file(tbot.get_file(call.photo[0].file_id).file_path)
     elif call.content_type == 'document':

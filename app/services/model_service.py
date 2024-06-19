@@ -44,6 +44,8 @@ class ModelService:
         return model
 
     def mask_prediction(self, file: Union[UploadFile, Upload]) -> tuple[str, str]:
+        
+        print('Вы начали распознавать модель при помощи сервиса')
 
         self.is_valid_image_size(file)
 
