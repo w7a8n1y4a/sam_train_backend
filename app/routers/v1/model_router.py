@@ -7,7 +7,4 @@ router = APIRouter()
 
 @router.post("", response_model=str)
 def get_infer_image(file: UploadFile, model_service: ModelService = Depends()):
-
-    print("Вы отправили картинку на распознавание через телеграм rest - swagger")
-
     return model_service.get_mask_link(file)

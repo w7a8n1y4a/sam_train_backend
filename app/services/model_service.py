@@ -1,7 +1,12 @@
 import os
 import shutil
 import uuid as pkg_uuid
+
+import fastapi
+import urllib3
+
 from typing import Union
+
 
 import filetype
 
@@ -45,8 +50,6 @@ class ModelService:
 
     def mask_prediction(self, file: Union[UploadFile, Upload]) -> tuple[str, str]:
         
-        print('Вы начали распознавать модель при помощи сервиса')
-
         self.is_valid_image_size(file)
 
         filename, extension, filepath = self.save_file_to_path(file)
@@ -98,7 +101,10 @@ class ModelService:
 
         # первично записывает файл в бинарном виде
         with open(filepath_uuid_only, 'wb') as buffer:
-            shutil.copyfileobj(file.file, buffer)
+            if isinstance(file, bytes):
+                buffer.write(file)
+            else:
+                shutil.copyfileobj(file.file, buffer)
 
         # позволяет получить расширение файла из суперблока
         try:
@@ -126,10 +132,15 @@ class ModelService:
         return f'{filename}{f".{extension}" if extension else ""}'
 
     @staticmethod
-    def is_valid_image_size(file: UploadFile) -> bool:
+    def is_valid_image_size(file: Union[UploadFile, Upload]) -> None:
         """Проверяет, является ли расширение расширением фотокарточки"""
 
-        if file.size > 50 * 2**20:
+        if isinstance(file, bytes) and len(file) > 50 * 2**20:
+            raise HTTPException(
+                status_code=http_status.HTTP_422_UNPROCESSABLE_ENTITY, detail=f"Large File size for Telegram"
+            )
+
+        if type(file) in (UploadFile, Upload) and file.size > 50 * 2**20:
             raise HTTPException(
                 status_code=http_status.HTTP_422_UNPROCESSABLE_ENTITY, detail=f"Large File size for Telegram"
             )
